@@ -12,7 +12,16 @@ type Member = {
   size: string;
   createdAt: string;
 };
-
+const SIZES = [
+  "3[16-20kg]",
+  "5[20-25kg]",
+  "6[25-30kg]",
+  "XS[30-35kg]",
+  "M",
+  "L",
+  "XL",
+  "XXL",
+] as const;
 export default function OrdersPage() {
   const [members, setMembers] = useState<Member[]>([]);
   const [loading, setLoading] = useState(true);
@@ -244,14 +253,16 @@ export default function OrdersPage() {
                 value={editName}
                 onChange={(e) => setEditName(e.target.value)}
               />
-              <select
-                value={editSize}
-                onChange={(e) => setEditSize(e.target.value)}
-              >
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
-              </select>
+        <select
+  value={editSize}
+  onChange={(e) => setEditSize(e.target.value)}
+>
+  {SIZES.map((s) => (
+    <option key={s} value={s}>
+      {s}
+    </option>
+  ))}
+</select>
             </div>
 
             <div className={styles.modalFooter}>

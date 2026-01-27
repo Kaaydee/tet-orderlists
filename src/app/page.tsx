@@ -12,7 +12,16 @@ type Member = {
   size: string;
 };
 
-const SIZES = ["M", "L", "XL"] as const;
+const SIZES = [
+  "3[16-20kg]",
+  "5[20-25kg]",
+  "6[25-30kg]",
+  "XS[30-35kg]",
+  "M",
+  "L",
+  "XL",
+  "XXL",
+] as const;
 
 export default function Page() {
   const [shirtLink] = useState(
@@ -20,7 +29,7 @@ export default function Page() {
   );
 
   /* ========= FORM STATE ========= */
-  const [members, setMembers] = useState<Member[]>([{ name: "", size: "M" }]);
+  const [members, setMembers] = useState<Member[]>([{ name: "", size: "" }]);
 
   /* ========= DB STATE (SOURCE OF TRUTH) ========= */
   const [ordersMembers, setOrdersMembers] = useState<Member[]>([]);
@@ -44,7 +53,7 @@ export default function Page() {
 
   const addMember = () => {
     if (members.length >= MAX_MEMBERS) return;
-    setMembers([...members, { name: "", size: "M" }]);
+    setMembers([...members, { name: "", size: "" }]);
   };
   const removeMember = (index: number) => {
     if (members.length === 1) return;
@@ -201,6 +210,10 @@ export default function Page() {
                       updateMember(index, "size", e.target.value)
                     }
                   >
+                    <option value="" disabled hidden>
+                      Size
+                    </option>
+
                     {SIZES.map((s) => (
                       <option key={s} value={s}>
                         {s}
@@ -366,7 +379,7 @@ export default function Page() {
               </span>
 
               <a
-                href="https://www.facebook.com/ten-facebook-cua-ban"
+                href="https://www.facebook.com/nguyen.tuan.kiet.708939/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.footerLink}
