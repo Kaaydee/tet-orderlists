@@ -13,7 +13,7 @@ type Member = {
   createdAt: string;
 };
 const SIZES = [
-  "3[16-20kg]",
+  "2[10-13kg]",
   "5[20-25kg]",
   "6[25-30kg]",
   "XS[30-35kg]",
