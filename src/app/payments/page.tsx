@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./payments.module.css";
 
 /* =====================
    TYPES
@@ -119,36 +119,20 @@ export default function PaymentsPage() {
       {/* TOP BAR */}
       <div className={styles.topBar}>
         <div>
-          {/* CHỈ HIỆN QUAY LẠI KHI KHÔNG PHẢI LIST */}
-          {step !== "LIST" && (
-            <button className={styles.back} onClick={() => setStep("LIST")}>
-              ← Quay lại
-            </button>
-          )}
-
+          <Link href="/" className={styles.back}>
+            ← Quay lại
+          </Link>
           <h1>Thanh toán áo</h1>
           <p className={styles.subtitle}>
             Người đã thanh toán sẽ không thể chọn lại
           </p>
         </div>
 
-        {/* ACTION BUTTONS */}
-        <div className={styles.actions}>
-          {step === "LIST" && (
-            <>
-              <button
-                className={styles.payBtn}
-                onClick={() => setStep("SELECT")}
-              >
-                Thanh toán
-              </button>
-
-              <Link href="/admin" className={styles.adminBtn}>
-                Admin xác nhận
-              </Link>
-            </>
-          )}
-        </div>
+        {step === "LIST" && (
+          <button className={styles.payBtn} onClick={() => setStep("SELECT")}>
+            Thanh toán
+          </button>
+        )}
       </div>
 
       {/* STEP 1: LIST */}

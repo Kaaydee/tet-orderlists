@@ -1,0 +1,137 @@
+.page {
+  padding: 40px 16px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.invoiceCard {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.invoiceCard h3 {
+  margin-bottom: 12px;
+}
+
+.invoiceCard ul {
+  margin: 12px 0;
+  padding-left: 18px;
+}
+
+.invoiceCard li {
+  margin-bottom: 6px;
+}
+
+.proofImage {
+  width: 100%;
+  max-width: 320px;
+  margin: 12px 0;
+  border-radius: 12px;
+  display: block;
+}
+
+/* TOTAL */
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed #e5e7eb;
+  font-size: 15px;
+}
+
+.totalRow strong {
+  color: #16a34a;
+  font-weight: 800;
+}
+
+.confirmBtn {
+  width: 100%;
+  margin-top: 14px;
+  background: #16a34a;
+  color: white;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.confirmBtn:hover {
+  background: #15803d;
+}
+
+/* =====================
+   LOGIN PAGE
+===================== */
+.loginPage {
+  min-height: 100vh;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.loginCard {
+  width: 100%;
+  max-width: 360px;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+  text-align: center;
+}
+
+.loginCard h2 {
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.loginCard form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.loginCard input {
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.loginCard input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.loginCard button {
+  height: 44px;
+  border-radius: 12px;
+  border: none;
+  background: #4f46e5;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.loginCard button:hover {
+  background: #4338ca;
+}
+
+/* =====================
+   ADMIN PAGE
+===================== */
+.page {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 16px;
+}

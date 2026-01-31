@@ -1,6 +1,6 @@
 /* Tailwind v4 – REQUIRED */
-@import "tailwindcss/preflight";
-@import "tailwindcss/utilities";
+/* @import "tailwindcss/preflight";
+@import "tailwindcss/utilities"; */
 
 /* App background giống mẫu */
 body {
