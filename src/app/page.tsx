@@ -237,93 +237,103 @@ export default function PaymentsPage() {
         </div>
       )}
 
-      {/* STEP 4: QR */}
-      {step === "QR" && (
-        <div className={styles.card}>
-          <h3>Quét mã QR để thanh toán</h3>
+   {/* STEP 4: QR */}
+{step === "QR" && (
+  <div className={styles.card}>
+    <h3>Quét mã QR để thanh toán</h3>
 
-          <Image
-            src="/qr.png"
-            alt="QR code for payment"
-            className={styles.qr}
-            width={300}
-            height={400}
-          />
+    <Image
+      src="/qr.png"
+      alt="QR code for payment"
+      className={styles.qr}
+      width={300}
+      height={400}
+    />
 
-          <div className={styles.transferRow}>
-            <span className={styles.transferLabel}>Nội dung chuyển khoản</span>
-            <span className={styles.transferValue}>Thanh toán áo Gia đình</span>
-          </div>
+    {/* 🔥 DÒNG HƯỚNG DẪN CHUYỂN TIỀN */}
+ <div className={styles.qrHint}>
+  <span>Vui lòng chuyển</span>
+  <strong className={styles.amount}>
+    {total.toLocaleString()}đ
+  </strong>
+  <span>vào tài khoản theo mã QR bên dưới</span>
+</div>
 
-          {/* FORM GROUP */}
-          <div className={styles.formGroup}>
-            {/* TÊN NGƯỜI THANH TOÁN */}
-            <input
-              type="text"
-              placeholder="Nhập tên người thanh toán"
-              value={paidBy}
-              onChange={(e) => setPaidBy(e.target.value)}
-              className={styles.input}
-            />
+    <div className={styles.transferRow}>
+      <span className={styles.transferLabel}>Nội dung chuyển khoản</span>
+      <span className={styles.transferValue}>
+        Thanh toán áo Gia đình
+      </span>
+    </div>
 
-            {/* UPLOAD ẢNH CHUYỂN KHOẢN */}
-            <label className={styles.uploadBox}>
-              <input
-                type="file"
-                accept="image/*"
-                hidden
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  if (file) setProofImage(file);
-                }}
-              />
+    {/* FORM GROUP */}
+    <div className={styles.formGroup}>
+      <input
+        type="text"
+        placeholder="Nhập tên người thanh toán"
+        value={paidBy}
+        onChange={(e) => setPaidBy(e.target.value)}
+        className={styles.input}
+      />
 
-              {proofImage ? (
-                <span className={styles.uploadSuccess}>
-                  ✅ Đã chọn ảnh: {proofImage.name}
-                </span>
-              ) : (
-                <span className={styles.uploadHint}>
-                  📷 Tải ảnh đã chuyển khoản
-                </span>
-              )}
-            </label>
-          </div>
+      <label className={styles.uploadBox}>
+        <input
+          type="file"
+          accept="image/*"
+          hidden
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (file) setProofImage(file);
+          }}
+        />
 
-          <button
-            disabled={!paidBy.trim() || !proofImage}
-            onClick={async () => {
-              if (!proofImage) return;
+        {proofImage ? (
+          <span className={styles.uploadSuccess}>
+            ✅ Đã chọn ảnh: {proofImage.name}
+          </span>
+        ) : (
+          <span className={styles.uploadHint}>
+            📷 Tải ảnh đã chuyển khoản
+          </span>
+        )}
+      </label>
+    </div>
 
-              const formData = new FormData();
-              formData.append("paidBy", paidBy);
-              formData.append("proofImage", proofImage);
-              formData.append(
-                "updates",
-                JSON.stringify(
-                  selectedMembers.map((m) => ({
-                    orderId: m.orderId,
-                    memberIndex: m.memberIndex,
-                  })),
-                ),
-              );
+    <button
+      disabled={!paidBy.trim() || !proofImage}
+      onClick={async () => {
+        if (!proofImage) return;
 
-              await fetch("/api/orders/payment/bulk", {
-                method: "PUT",
-                body: formData, // 🔥 KHÔNG set Content-Type
-              });
+        const formData = new FormData();
+        formData.append("paidBy", paidBy);
+        formData.append("proofImage", proofImage);
+        formData.append(
+          "updates",
+          JSON.stringify(
+            selectedMembers.map((m) => ({
+              orderId: m.orderId,
+              memberIndex: m.memberIndex,
+            })),
+          ),
+        );
 
-              setPaidBy("");
-              setProofImage(null);
-              setSelected([]);
-              setStep("DONE");
-              await loadData();
-            }}
-          >
-            Next
-          </button>
-        </div>
-      )}
+        await fetch("/api/orders/payment/bulk", {
+          method: "PUT",
+          body: formData,
+        });
+
+        setPaidBy("");
+        setProofImage(null);
+        setSelected([]);
+        setStep("DONE");
+        await loadData();
+      }}
+    >
+      Next
+    </button>
+  </div>
+)}
+
 
       {step === "DONE" && (
         <div className={styles.card}>

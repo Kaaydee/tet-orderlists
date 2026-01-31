@@ -458,3 +458,33 @@
     font-size: 15px;
   }
 }
+
+.qrHint {
+  margin: 12px 0 6px;
+  display: flex;
+  justify-content: center;
+  align-items: baseline; /* 🔥 giữ text & số thẳng hàng */
+  gap: 6px;
+  font-size: 14px;
+  color: #334155;
+  text-align: center;
+  flex-wrap: wrap; /* mobile vẫn ok */
+}
+
+.amount {
+  color: #dc2626;
+  font-weight: 800;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .qrHint {
+    font-size: 13px;
+  }
+
+  .amount {
+    font-size: 15px;
+  }
+}
