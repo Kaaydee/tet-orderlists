@@ -256,7 +256,7 @@ export default function PaymentsPage() {
   <strong className={styles.amount}>
     {total.toLocaleString()}đ
   </strong>
-  <span>vào tài khoản theo mã QR bên dưới</span>
+  <span>vào tài khoản theo mã QR bên trên</span>
 </div>
 
     <div className={styles.transferRow}>
